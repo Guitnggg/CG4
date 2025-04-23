@@ -2,6 +2,10 @@
 
 using namespace KamataEngine;
 
+GameScene::~GameScene()
+{
+}
+
 void GameScene::Initialize()
 {
 }

@@ -5,6 +5,9 @@
 class GameScene
 {
 public:
+
+    //デストラクタ
+    ~GameScene();
    
     // 初期化
     void Initialize();
