@@ -30,6 +30,7 @@ private:
     Model* modelParticle_ = nullptr;
 
     // パーティクル
+    std::list<Particle*> particles_;
     Particle* particle_ = nullptr;
 };
 
