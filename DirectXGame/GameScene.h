@@ -21,6 +21,9 @@ public:
     // 描画
     void Draw();
 
+    // パーティクル発生
+    void ParticleCreate(Vector3 position);
+
 private:
 
     // カメラ
