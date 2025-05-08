@@ -11,7 +11,7 @@ GameScene::~GameScene()
 
 void GameScene::Initialize()
 {
-    // カメラの生成
+    // カメラの初期化
     camera_.Initialize();
 
     // モデルの生成
