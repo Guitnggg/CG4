@@ -9,7 +9,7 @@ std::uniform_real_distribution<float> distribution(-1.0f, 1.0f);
 using namespace MathUtility;
 
 GameScene::~GameScene()
-{   
+{
     // メモリ解放
     delete modelParticle_;
     delete particle_;
@@ -46,7 +46,7 @@ void GameScene::Initialize()
         particles_.push_back(particle);
     }
 
-  
+
 }
 
 void GameScene::Update()
@@ -55,7 +55,7 @@ void GameScene::Update()
     for (Particle* particle : particles_)
     {
         particle->Update();
-    }    
+    }
 
     // 終了フラグが立っているパーティクルを削除
     particles_.remove_if([](Particle* particle) {

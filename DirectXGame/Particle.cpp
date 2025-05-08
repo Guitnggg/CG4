@@ -4,7 +4,7 @@
 
 using namespace MathUtility;
 
-void Particle::Initialize(Model*model, Vector3 position, Vector3 velocity)
+void Particle::Initialize(Model* model, Vector3 position, Vector3 velocity)
 {
     // NULLチェック
     assert(model);
@@ -20,8 +20,8 @@ void Particle::Initialize(Model*model, Vector3 position, Vector3 velocity)
     velocity_ = velocity;
 
     // ワールド変換データの初期化
-    worldTransform_.Initialize();   
-    worldTransform_.translation_ = position; 
+    worldTransform_.Initialize();
+    worldTransform_.translation_ = position;
     worldTransform_.scale_ = { 0.2f, 0.2f, 0.2f };
 }
 
@@ -40,7 +40,7 @@ void Particle::Update()
     counter_ += 1.0f / 60.0f;
 
     //フェード処理
-    color_.w= std::clamp(1.0f - counter_ / kDuration, 0.0f, 1.0f);
+    color_.w = std::clamp(1.0f - counter_ / kDuration, 0.0f, 1.0f);
 
     // 寿命を超えたら終了
     if (counter_ > kDuration)
