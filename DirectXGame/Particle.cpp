@@ -2,7 +2,7 @@
 
 using namespace MathUtility;
 
-void Particle::Initialize(Model*model, Vector3 position)
+void Particle::Initialize(Model*model, Vector3 position, Vector3 velocity)
 {
     // NULLチェック
     assert(model);
@@ -14,9 +14,13 @@ void Particle::Initialize(Model*model, Vector3 position)
     objectColor_.Initialize();
     color_ = { 1.0f, 1.0f, 0.0f, 1.0f };
 
+    // 移動量の設定
+    velocity_ = velocity;
+
     // ワールド変換データの初期化
     worldTransform_.Initialize();   
     worldTransform_.translation_ = position; 
+    worldTransform_.scale_ = { 0.2f, 0.2f, 0.2f };
 }
 
 void Particle::Update()
@@ -25,7 +29,7 @@ void Particle::Update()
     objectColor_.SetColor(color_);
 
     // 移動
-    /*worldTransform_.translation_ += { 0.0f, 0.1f, 0.0f };*/
+    worldTransform_.translation_ += velocity_;
 
     // 行列を更新
     worldTransform_.UpdateMatrix();

@@ -1,6 +1,12 @@
 #include "GameScene.h"
 
-using namespace KamataEngine;
+#include <random>
+
+std::random_device seedGenerator;
+std::mt19937 random(seedGenerator());
+std::uniform_real_distribution<float> distribution(-1.0f, 1.0f);
+
+using namespace MathUtility;
 
 GameScene::~GameScene()
 {   
@@ -28,12 +34,19 @@ void GameScene::Initialize()
         // 生成
         Particle* particle = new Particle();
         // 位置
-        Vector3 position = { 0.5f*i, 0.0f, 0.0f };
+        Vector3 position = { 0.0f, 0.0f, 0.0f };
+        // 移動量
+        Vector3 velocity = { distribution(random), distribution(random), 0 };
+        Normalize(velocity);
+        velocity *= distribution(random);
+        velocity *= 0.1f;
         // 初期化
-        particle->Initialize(modelParticle_, position);
+        particle->Initialize(modelParticle_, position, velocity);
         // リストに追加
         particles_.push_back(particle);
     }
+
+  
 }
 
 void GameScene::Update()
