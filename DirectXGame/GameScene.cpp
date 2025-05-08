@@ -6,6 +6,7 @@ std::random_device seedGenerator;
 std::mt19937 random(seedGenerator());
 std::uniform_real_distribution<float> distribution(-1.0f, 1.0f);
 
+using namespace KamataEngine;
 using namespace MathUtility;
 
 GameScene::~GameScene()
@@ -26,7 +27,7 @@ void GameScene::Initialize()
     camera_.Initialize();
 
     // モデルの生成
-    modelParticle_ = Model::CreateSphere(4, 4); 
+    modelParticle_ = Model::CreateSphere(4, 4);
 
     // 乱数の初期化
     srand((unsigned)time(NULL));
