@@ -28,10 +28,7 @@ void Particle::Initialize(Model*model, Vector3 position, Vector3 velocity)
 void Particle::Update()
 {
     // 終了フラグが立っていたら何もしない
-    if (isFinished_)
-    {
-        return;
-    }
+    if (isFinished_) { return; }
 
     // 色変更オブジェクトに色の数値を設定する
     objectColor_.SetColor(color_);
