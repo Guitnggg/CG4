@@ -45,8 +45,6 @@ void GameScene::Initialize()
         // リストに追加
         particles_.push_back(particle);
     }
-
-
 }
 
 void GameScene::Update()
