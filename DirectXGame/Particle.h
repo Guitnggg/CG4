@@ -16,6 +16,9 @@ public:
     // 描画
     void Draw(Camera& camera);
 
+    // デスフラグのgetter
+    bool IsFinished() const { return isFinished_; }
+
 private:
     // ワールド変換データ
     WorldTransform worldTransform_;
@@ -31,5 +34,12 @@ private:
 
     // 移動量
     Vector3 velocity_;
+
+    // 終了フラグ
+    bool isFinished_ = false;
+    // 経過時間 
+    float counter_ = 0.0f;
+    // 寿命
+    const float kDuration = 1.0f;
 };
 
