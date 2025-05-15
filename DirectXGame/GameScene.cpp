@@ -19,6 +19,9 @@ GameScene::~GameScene()
         delete particle;
     }
     particles_.clear();
+
+    delete modelEffect_;
+    delete effect_;
 }
 
 void GameScene::Initialize()
@@ -31,6 +34,11 @@ void GameScene::Initialize()
 
     // 乱数の初期化
     srand((unsigned)time(NULL));
+
+    // エフェクトの初期化
+    modelEffect_ = Model::CreateFromOBJ("diamond", true);
+    effect_ = new Effect();
+    effect_->Initialize(modelEffect_);
 }
 
 void GameScene::Update()
@@ -58,6 +66,9 @@ void GameScene::Update()
         }
         return false;
         });
+
+    // エフェクトの更新
+    effect_->Update();
 }
 
 void GameScene::Draw()
@@ -69,10 +80,13 @@ void GameScene::Draw()
     Model::PreDraw(dxCommon->GetCommandList());
 
     // パーティクルの描画
-    for (Particle* particle : particles_)
+   /* for (Particle* particle : particles_)
     {
         particle->Draw(camera_);
-    }
+    }*/
+
+    // エフェクトの描画
+    effect_->Draw(camera_);
 
     // 3Dモデルの描画後処理
     Model::PostDraw();
