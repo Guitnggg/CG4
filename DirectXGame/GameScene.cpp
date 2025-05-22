@@ -21,7 +21,11 @@ GameScene::~GameScene()
     particles_.clear();
 
     delete modelEffect_;
-    delete effect_;
+    for (Effect* effect : effects_) {
+        delete effect;
+    }
+    effects_.clear();
+
 }
 
 void GameScene::Initialize()
@@ -32,13 +36,11 @@ void GameScene::Initialize()
     // モデルの生成
     modelParticle_ = Model::CreateSphere(4, 4);
 
-    // 乱数の初期化
-    srand((unsigned)time(NULL));
-
     // エフェクトの初期化
     modelEffect_ = Model::CreateFromOBJ("diamond", true);
-    effect_ = new Effect();
-    effect_->Initialize(modelEffect_);
+
+    // 乱数の初期化
+    srand((unsigned)time(NULL)); 
 }
 
 void GameScene::Update()
@@ -49,6 +51,10 @@ void GameScene::Update()
     // パーティクルの発生確率
     if (rand() % 30 == 0) {
         ParticleCreate(position);
+    }
+
+    if(rand() % 30 == 0) {
+        EffectCreate(position);
     }
 
     // パーティクルの更新
@@ -68,7 +74,18 @@ void GameScene::Update()
         });
 
     // エフェクトの更新
-    effect_->Update();
+    for (Effect* effect : effects_) {
+        effect->Update();
+    }
+
+    // 終了済みのエフェクトを削除（もし IsFinished 実装していれば）
+    effects_.remove_if([](Effect* effect) {
+        if (effect->IsFinished()) {
+            delete effect;
+            return true;
+        }
+        return false;
+        });
 }
 
 void GameScene::Draw()
@@ -86,7 +103,9 @@ void GameScene::Draw()
     }*/
 
     // エフェクトの描画
-    effect_->Draw(camera_);
+    for (Effect* effect : effects_) {
+        effect->Draw(camera_);
+    }
 
     // 3Dモデルの描画後処理
     Model::PostDraw();
@@ -112,3 +131,16 @@ void GameScene::ParticleCreate(Vector3 position)
         particles_.push_back(particle);
     }
 }
+
+void GameScene::EffectCreate(KamataEngine::Vector3 position)
+{
+    for(int i = 0; i < 10; i++)
+    {
+        Effect * effect = new Effect();
+
+        effect->Initialize(modelEffect_, position); // 拡張された Initialize を使う場合
+
+        effects_.push_back(effect);
+    }
+    }
+   

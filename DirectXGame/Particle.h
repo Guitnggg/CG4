@@ -24,10 +24,8 @@ private:
     // モデル
     KamataEngine::Model* model_ = nullptr;
 
-    // 色変更オブジェクト
+    // 色変更
     KamataEngine::ObjectColor objectColor_;
-
-    // 色の数値
     KamataEngine::Vector4 color_;
 
     // 移動量

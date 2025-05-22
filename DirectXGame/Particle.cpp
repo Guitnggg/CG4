@@ -1,7 +1,6 @@
 #include "Particle.h"
 
 #include <algorithm>
-#include "Effect.h"
 
 using namespace KamataEngine;
 using namespace MathUtility;

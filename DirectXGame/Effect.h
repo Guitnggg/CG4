@@ -5,19 +5,23 @@
 class Effect
 {
 public:
-    // 初期化
-    void Initialize(KamataEngine::Model* model);
-
-    // 更新
+    void Initialize(KamataEngine::Model* model, KamataEngine::Vector3 position, KamataEngine::Vector3 velocity = {});
+   
     void Update();
-
-    // 描画
+    
     void Draw(KamataEngine::Camera& camera);
+    
+    bool IsFinished() const { return isFinished_; }
 
 private:
-    // ワールド変換データ
     KamataEngine::WorldTransform worldTransform_;
-
-    // モデル
     KamataEngine::Model* model_ = nullptr;
+
+    KamataEngine::Vector4 color_;
+    KamataEngine::ObjectColor objectColor_;
+
+    KamataEngine::Vector3 velocity_ = {}; // 移動ベクトル
+    float counter_ = 0.0f;
+    const float kDuration = 1.0f;
+    bool isFinished_ = false;
 };

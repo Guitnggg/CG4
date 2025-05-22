@@ -23,6 +23,9 @@ public:
     // パーティクル発生
     void ParticleCreate(KamataEngine::Vector3 position);
 
+    // エフェクト発生
+    void EffectCreate(KamataEngine::Vector3 position);
+
 private:
 
     // カメラ
@@ -36,7 +39,7 @@ private:
     Particle* particle_ = nullptr;
 
     // エフェクト
-    Effect* effect_ = nullptr;
+    std::list<Effect*> effects_;
     KamataEngine::Model* modelEffect_ = nullptr;
 };
 
