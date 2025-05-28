@@ -33,10 +33,10 @@ void GameScene::Initialize()
     // カメラの初期化
     camera_.Initialize();
 
-    // モデルの生成
+    // パーティクルモデルの生成
     modelParticle_ = Model::CreateSphere(4, 4);
 
-    // エフェクトの初期化
+    // エフェクトモデルの生成
     modelEffect_ = Model::CreateFromOBJ("diamond", true);
 
     // 乱数の初期化
@@ -45,16 +45,13 @@ void GameScene::Initialize()
 
 void GameScene::Update()
 {
-    // パーティクル発生場所はランダム
+    // 発生場所はランダム
     Vector3 position = { distribution(random) * 30.0f, distribution(random) * 20.0f, 0 };
 
-    // パーティクルの発生確率
+#pragma region パーティクル更新
+    // 発生確率
     if (rand() % 30 == 0) {
         ParticleCreate(position);
-    }
-
-    if(rand() % 30 == 0) {
-        EffectCreate(position);
     }
 
     // パーティクルの更新
@@ -72,13 +69,20 @@ void GameScene::Update()
         }
         return false;
         });
+#pragma endregion
+
+#pragma region エフェクト更新
+    // エフェクトの発生確率
+    if (rand() % 30 == 0) {
+        EffectCreate(position);
+    }
 
     // エフェクトの更新
     for (Effect* effect : effects_) {
         effect->Update();
     }
 
-    // 終了済みのエフェクトを削除（もし IsFinished 実装していれば）
+    // 終了済みのエフェクトを削除
     effects_.remove_if([](Effect* effect) {
         if (effect->IsFinished()) {
             delete effect;
@@ -86,6 +90,8 @@ void GameScene::Update()
         }
         return false;
         });
+#pragma endregion
+       
 }
 
 void GameScene::Draw()
@@ -138,9 +144,17 @@ void GameScene::EffectCreate(KamataEngine::Vector3 position)
     {
         Effect * effect = new Effect();
 
-        effect->Initialize(modelEffect_, position); // 拡張された Initialize を使う場合
+        // 位置
+        Vector3 pos = position;
+        // 移動量
+        Vector3 velocity = {0,0,0};
+       /* Normalize(velocity);
+        velocity *= distribution(random);
+        velocity *= 0.1f;*/
+
+        effect->Initialize(modelEffect_, position, velocity);
 
         effects_.push_back(effect);
     }
-    }
+}
    

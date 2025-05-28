@@ -7,6 +7,7 @@ static std::random_device seed;
 static std::mt19937 engine(seed());
 static std::uniform_real_distribution<float> yScaleDist(0.5f, 5.0f);   // Y方向スケール
 static std::uniform_real_distribution<float> zRotateDist(0.0f, 3.14159f * 2); // Z軸回転（0〜360度）
+static std::uniform_real_distribution<float> colorDist(0.0f, 1.0f); // 色のランダム値
 
 using namespace KamataEngine;
 using namespace MathUtility;
@@ -38,6 +39,17 @@ void Effect::Update()
     // 終了している場合は何もしない
     if (isFinished_) { return; }
 
+    // 大きさが変わったり、回転したり、色が変わったりする
+    worldTransform_.scale_.y += 0.1f;
+    worldTransform_.rotation_.z += 0.05f;
+
+    //color_.x = colorDist(engine);
+    //color_.y = colorDist(engine);
+    color_.z = colorDist(engine);
+    objectColor_.SetColor(color_);
+
+
+
     // フェード処理
     counter_ += 1.0f / 60.0f;
     color_.w = std::clamp(1.0f - counter_ / kDuration, 0.0f, 1.0f);
@@ -46,7 +58,6 @@ void Effect::Update()
         isFinished_ = true;
     }
 
-    objectColor_.SetColor(color_);
     worldTransform_.UpdateMatrix();
 }
 
