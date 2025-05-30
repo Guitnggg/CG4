@@ -39,7 +39,7 @@ void GameScene::Update()
     Vector3 position = { distribution(random) * 30.0f, distribution(random) * 20.0f, 0 };
 
     // パーティクルの発生確率
-    if (rand() % 30 == 0) {
+    if (rand() % 40 == 0) {
         ParticleCreate(position);
     }
 
@@ -81,7 +81,7 @@ void GameScene::Draw()
 void GameScene::ParticleCreate(Vector3 position)
 {
     // パーティクルの生成
-    for (int i = 0; i < 150; i++)
+    for (int i = 0; i <100; i++)
     {
         // 生成
         Particle* particle = new Particle();

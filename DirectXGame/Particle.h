@@ -39,5 +39,8 @@ private:
     float counter_ = 0.0f;
     // 寿命
     const float kDuration = 1.0f;
+
+    KamataEngine::Vector4 startColor_; // 開始時の色
+    KamataEngine::Vector4 endColor_;   // 終了時の色
 };
 
