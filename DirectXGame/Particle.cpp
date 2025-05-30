@@ -37,7 +37,7 @@ void Particle::Initialize(Model* model, Vector3 position, Vector3 velocity)
     worldTransform_.rotation_.y = rotationDist(random);
 
     // 青から白に変化する設定
-    startColor_ = { 1.0f, 0.0f, 0.0f, 1.0f }; // 濃い青
+    startColor_ = { 1.0f, 0.0f, 0.0f, 1.0f }; // 濃い赤
     endColor_ = { 1.0f, 1.0f, 1.0f, 0.0f }; // 白で消える
 
     color_ = startColor_;
