@@ -4,11 +4,10 @@
 #include <random>
 #include <cassert>
 
-// グローバルな乱数エンジンを追加  
 static std::random_device rd;
 static std::mt19937 random(rd());
 
-static std::uniform_real_distribution<float> rotationDist(0.0f, 3.14159f * 2); // 0〜2πラジアン（360°）
+static std::uniform_real_distribution<float> rotationDist(0.0f, 3.14159f * 2);
 
 using namespace KamataEngine;
 using namespace MathUtility;
