@@ -15,7 +15,7 @@ void Particle::Initialize(Model* model, Vector3 position, Vector3 velocity)
 
     // 色の設定
     objectColor_.Initialize();
-    color_ = { 1.0f, 1.0f, 0.0f, 1.0f };
+    color_ = { 1.0f, 1.0f, 1.0f, 1.0f };
 
     // 移動量の設定
     velocity_ = velocity;
@@ -40,7 +40,8 @@ void Particle::Update()
     // カウンターを１フレーム分の時間を加算
     counter_ += 1.0f / 60.0f;
 
-    //フェード処理
+    // フェード処理
+    color_ = { 0.6f, 0.8f, 1.0f, 1.0f }; // 明るい青系
     color_.w = std::clamp(1.0f - counter_ / kDuration, 0.0f, 1.0f);
 
     // 寿命を超えたら終了
