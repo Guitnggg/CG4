@@ -27,7 +27,7 @@ void GameScene::Initialize()
     camera_.Initialize();
 
     // モデルの生成
-    modelParticle_ = Model::CreateSphere(4, 4);
+    modelParticle_ = Model::CreateFromOBJ("circle", true);
 
     // 乱数の初期化
     srand((unsigned)time(NULL));
