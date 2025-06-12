@@ -20,6 +20,7 @@ void Effect::Initialize(KamataEngine::Model* model, KamataEngine::Vector3 positi
     // 引数で受け取った値をメンバ変数に格納
     model_ = model;
     velocity_ = velocity;
+    worldTransform_.rotation_.y = 3.14159f; // Y軸で180度回転
 
     //　色の初期化
     objectColor_.Initialize();
@@ -45,7 +46,7 @@ void Effect::Update()
 
     //color_.x = colorDist(engine);
     //color_.y = colorDist(engine);
-    color_.z = colorDist(engine);
+    //color_.z = colorDist(engine);
     objectColor_.SetColor(color_);
 
 
