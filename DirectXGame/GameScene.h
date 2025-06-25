@@ -1,6 +1,7 @@
 #pragma once
 
 #include <KamataEngine.h>
+#include "Model2.h"
 
 class GameScene
 {
@@ -24,7 +25,7 @@ private:
     KamataEngine::Camera* camera_;
 
     // モデル
-    KamataEngine::Model* model_ = nullptr;
+    KamataEngine::Model2* model_ = nullptr;
     uint32_t textureHandle_;
 
 };

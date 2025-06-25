@@ -4,6 +4,7 @@ using namespace KamataEngine;
 
 GameScene::~GameScene()
 {
+	Model2::StaticFinalize();
 	delete model_;
 }
 
@@ -17,7 +18,8 @@ void GameScene::Initialize()
     camera_ = new Camera();
     camera_->Initialize();
 
-    model_ = Model::CreateFromOBJ("Cube", true);
+	Model2::StaticInitialize();
+    model_ = Model2::CreateFromOBJ("Cube", true);
     textureHandle_ = TextureManager::Load("./Resources/uvChecker.png");
 }
 
@@ -46,7 +48,7 @@ void GameScene::Draw()
 
 #pragma region 3Dオブジェクト描画
 	// 3Dオブジェクト描画前処理
-	Model::PreDraw(dxCommon_->GetCommandList());
+	Model2::PreDraw(dxCommon_->GetCommandList());
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
@@ -55,7 +57,7 @@ void GameScene::Draw()
 	model_->Draw(*worldTransform_, *camera_, textureHandle_);
 
 	// 3Dオブジェクト描画後処理
-	Model::PostDraw();
+	Model2::PostDraw();
 #pragma endregion
 
 #pragma region 前景スプライト描画
