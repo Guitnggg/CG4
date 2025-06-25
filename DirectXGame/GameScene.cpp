@@ -4,8 +4,12 @@ using namespace KamataEngine;
 
 GameScene::~GameScene()
 {
+	delete worldTransform_;
+	delete camera_;
+
 	Model2::StaticFinalize();
 	delete model_;
+	
 }
 
 void GameScene::Initialize()
