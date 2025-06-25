@@ -17,5 +17,15 @@ public:
 
     // 描画
     void Draw();
+
+private:
+    KamataEngine::DirectXCommon* dxCommon_ = nullptr;
+    KamataEngine::WorldTransform* worldTransform_;
+    KamataEngine::Camera* camera_;
+
+    // モデル
+    KamataEngine::Model* model_ = nullptr;
+    uint32_t textureHandle_;
+
 };
 
