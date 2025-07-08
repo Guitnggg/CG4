@@ -131,7 +131,7 @@ namespace KamataEngine {
 		return instance;
 	}
 
-	Model2* Model2::CreateSquare()
+	Model2* Model2::CreateSquare(uint32_t count)
 	{
 		// メモリ確保
 		Model2* instance = new Model2;
@@ -144,32 +144,44 @@ namespace KamataEngine {
 		// インデックス数
 		const uint32_t kNumIndices = 6;
 
-		vertices.resize(kNumVertices);
-		indices.resize(kNumIndices);
+		vertices.resize(kNumVertices * count);
+		indices.resize(kNumIndices * count);
 
-		// 左下
-		vertices[0].pos = { -1.0f, -1.0f, 0.0f };
-		vertices[0].uv = { 0.0f, 1.0f };
-		vertices[0].normal = { 0.0f, 0.0f, 1.0f };
+		for (uint32_t i = 0; i < count; ++i) {
 
-		// 左上
-		vertices[1].pos = { -1.0f, 1.0f, 0.0f };
-		vertices[1].uv = { 0.0f, 0.0f };
-		vertices[1].normal = { 0.0f, 0.0f, 1.0f };
+			float offsetX = static_cast<float>(i) * 2.0f;
 
-		// 右下
-		vertices[2].pos = { 1.0f, -1.0f, 0.0f };
-		vertices[2].uv = { 1.0f, 1.0f };
-		vertices[2].normal = { 0.0f, 0.0f, 1.0f };
+			uint32_t vertexBase = i * kNumVertices;
+			uint32_t indexBase = i * kNumIndices;
 
-		// 右上
-		vertices[3].pos = { 1.0f, 1.0f, 0.0f };
-		vertices[3].uv = { 1.0f, 0.0f };
-		vertices[3].normal = { 0.0f, 0.0f, 1.0f };
+			// 左下
+			vertices[vertexBase + 0].pos = { -1.0f + offsetX, -1.0f, 0.0f };
+			vertices[vertexBase + 0].uv = { 0.0f, 1.0f };
+			vertices[vertexBase + 0].normal = { 0.0f, 0.0f, -1.0f };
 
-		// インデックス
-		indices[0] = 0;	indices[1] = 1;	indices[2] = 2;
-		indices[3] = 2;	indices[4] = 1;	indices[5] = 3;
+			// 左上
+			vertices[vertexBase + 1].pos = { -1.0f + offsetX,  1.0f, 0.0f };
+			vertices[vertexBase + 1].uv = { 0.0f, 0.0f };
+			vertices[vertexBase + 1].normal = { 0.0f, 0.0f, -1.0f };
+
+			// 右下
+			vertices[vertexBase + 2].pos = { 1.0f + offsetX, -1.0f, 0.0f };
+			vertices[vertexBase + 2].uv = { 1.0f, 1.0f };
+			vertices[vertexBase + 2].normal = { 0.0f, 0.0f, -1.0f };
+
+			// 右上
+			vertices[vertexBase + 3].pos = { 1.0f + offsetX,  1.0f, 0.0f };
+			vertices[vertexBase + 3].uv = { 1.0f, 0.0f };
+			vertices[vertexBase + 3].normal = { 0.0f, 0.0f, -1.0f };
+
+			// インデックス
+			indices[indexBase + 0] = vertexBase + 0;
+			indices[indexBase + 1] = vertexBase + 1;
+			indices[indexBase + 2] = vertexBase + 2;
+			indices[indexBase + 3] = vertexBase + 2;
+			indices[indexBase + 4] = vertexBase + 1;
+			indices[indexBase + 5] = vertexBase + 3;
+		}
 
 		instance->InitializeFromVertices(vertices, indices);
 

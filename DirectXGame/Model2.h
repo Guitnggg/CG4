@@ -140,7 +140,7 @@ namespace KamataEngine {
 		/// <summary> 
 		/// 四角形モデル生成
 		/// </summary>
-		static Model2* CreateSquare();
+		static Model2* CreateSquare(uint32_t count = 1);
 
 		/// <summary>
 		/// 描画前処理
