@@ -8,8 +8,7 @@ GameScene::~GameScene()
 	delete camera_;
 
 	Model2::StaticFinalize();
-	delete model_;
-	
+	delete model_;	
 }
 
 void GameScene::Initialize()
