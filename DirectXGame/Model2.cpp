@@ -13,6 +13,7 @@
 #include <fstream>
 #include <numbers>
 #include <sstream>
+
 #include "Model2.h"
 
 #pragma comment(lib, "d3dcompiler.lib")
@@ -185,6 +186,60 @@ namespace KamataEngine {
 
 		instance->InitializeFromVertices(vertices, indices);
 
+		return instance;
+	}
+
+	Model2* Model2::CreateRing(uint32_t segmentCount, float innerRadius, float outerRadius) {
+
+		// メモリ確保
+		Model2* instance = new Model2;
+		std::vector<Mesh::VertexPosNormalUv> vertices;
+		std::vector<uint32_t> indices;
+
+		float angleStep = 2.0f * std::numbers::pi_v<float> / static_cast<float>(segmentCount);
+
+		for (uint32_t i = 0; i < segmentCount; ++i) {
+			float angle0 = angleStep * i;
+			float angle1 = angleStep * (i + 1);
+
+			uint32_t vertexBase = static_cast<uint32_t>(vertices.size());
+
+			Mesh::VertexPosNormalUv v[4];
+
+			// 内円
+			v[0].pos = { -std::cos(angle0) * innerRadius, std::sin(angle0) * innerRadius, 0.0f };
+			v[1].pos = { -std::cos(angle1) * innerRadius, std::sin(angle1) * innerRadius, 0.0f };
+			// 外円
+			v[2].pos = { -std::cos(angle0) * outerRadius, std::sin(angle0) * outerRadius, 0.0f };
+			v[3].pos = { -std::cos(angle1) * outerRadius, std::sin(angle1) * outerRadius, 0.0f };
+
+			// 法線
+			for (int j = 0; j < 4; ++j) {
+				v[j].normal = { 0.0f, 0.0f, -1.0f };
+			}
+
+			// UV（U軸は一周で 0.0〜1.0）
+			float u0 = static_cast<float>(i) / segmentCount;
+			float u1 = static_cast<float>(i + 1) / segmentCount;
+			v[0].uv = { u0, 0.0f };
+			v[1].uv = { u1, 0.0f };
+			v[2].uv = { u0, 1.0f };
+			v[3].uv = { u1, 1.0f };
+
+			for (int j = 0; j < 4; ++j) {
+				vertices.push_back(v[j]);
+			}
+
+			// インデックス（二つの三角形）
+			indices.push_back(vertexBase + 0);
+			indices.push_back(vertexBase + 2);
+			indices.push_back(vertexBase + 1);
+			indices.push_back(vertexBase + 1);
+			indices.push_back(vertexBase + 2);
+			indices.push_back(vertexBase + 3);
+		}
+
+		instance->InitializeFromVertices(vertices, indices);
 		return instance;
 	}
 

@@ -143,6 +143,16 @@ namespace KamataEngine {
 		static Model2* CreateSquare(uint32_t count = 1);
 
 		/// <summary>
+        /// リングモデルを作成（四角形を円周上に並べる）
+        /// </summary>
+        /// <param name="kRingDivide">分割数</param>
+        /// <param name="kInnerRadius">内半径</param>
+        /// <param name="kOuterRadius">外半径</param>
+        /// <returns>生成されたモデル</returns>
+		static Model2* CreateRing(uint32_t kRingDivide = 32, float kInnerRadius = 2.0f, float kOuterRadius = 3.0f);
+
+
+		/// <summary>
 		/// 描画前処理
 		/// </summary>
 		/// <param name="commandList">描画コマンドリスト</param>
