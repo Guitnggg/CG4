@@ -54,7 +54,7 @@ private:
     KamataEngine::Model* model_ = nullptr;
 
     uint32_t textureHandle_ = 0;
-    KamataEngine::Sprite* sprite_ = nullptr;
+    KamataEngine::Sprite* titleSprite_ = nullptr;
 
     // 終了フラグ
     bool isEnd_ = false;

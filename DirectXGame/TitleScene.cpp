@@ -5,14 +5,14 @@ using namespace KamataEngine;
 TitleScene::TitleScene() {}
 
 TitleScene::~TitleScene(){
-	delete sprite_;
+	delete titleSprite_;
 }
 
 void TitleScene::Initialize(){
 	dxCommon_ = DirectXCommon::GetInstance();
     
 	textureHandle_ = TextureManager::Load("./Resources/title/title.png");
-	sprite_ = Sprite::Create(textureHandle_, { 0.0f,0.0f });
+	titleSprite_ = Sprite::Create(textureHandle_, { 0.0f, 0.0f });
 }
 
 void TitleScene::Update(){
@@ -37,7 +37,7 @@ void TitleScene::Draw(){
 	/// ここに背景スプライトの描画処理を追加できる
 	/// </summary>
 
-	sprite_->Draw();
+	titleSprite_->Draw();
 
 	// スプライト描画後処理
 	Sprite::PostDraw();
