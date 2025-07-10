@@ -38,12 +38,12 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
         // 描画処理 
         //=============
 
-        // 描画処理開始       
+        // 描画処理開始
         dxCommon->PreDraw();
 
         sceneManager.Draw();
 
-        //描画処理終了       
+        // 描画処理終了
         dxCommon->PostDraw();
     }
 

@@ -53,6 +53,7 @@ private:
 
     KamataEngine::Model* model_ = nullptr;
 
+    // テクスチャハンドル
     uint32_t textureHandle_ = 0;
     KamataEngine::Sprite* titleSprite_ = nullptr;
 
