@@ -189,16 +189,16 @@ namespace KamataEngine {
 		return instance;
 	}
 
-	Model2* Model2::CreateRing(uint32_t segmentCount, float innerRadius, float outerRadius) {
+	Model2* Model2::CreateRing(uint32_t kRingDivide, float kInnerRadius, float kOuterRadius) {
 
 		// メモリ確保
 		Model2* instance = new Model2;
 		std::vector<Mesh::VertexPosNormalUv> vertices;
 		std::vector<uint32_t> indices;
 
-		float angleStep = 2.0f * std::numbers::pi_v<float> / static_cast<float>(segmentCount);
+		float angleStep = 2.0f * std::numbers::pi_v<float> / static_cast<float>(kRingDivide);
 
-		for (uint32_t i = 0; i < segmentCount; ++i) {
+		for (uint32_t i = 0; i < kRingDivide; ++i) {
 			float angle0 = angleStep * i;
 			float angle1 = angleStep * (i + 1);
 
@@ -207,11 +207,11 @@ namespace KamataEngine {
 			Mesh::VertexPosNormalUv v[4];
 
 			// 内円
-			v[0].pos = { -std::cos(angle0) * innerRadius, std::sin(angle0) * innerRadius, 0.0f };
-			v[1].pos = { -std::cos(angle1) * innerRadius, std::sin(angle1) * innerRadius, 0.0f };
+			v[0].pos = { -std::cos(angle0) * kInnerRadius, std::sin(angle0) * kInnerRadius, 0.0f };
+			v[1].pos = { -std::cos(angle1) * kInnerRadius, std::sin(angle1) * kInnerRadius, 0.0f };
 			// 外円
-			v[2].pos = { -std::cos(angle0) * outerRadius, std::sin(angle0) * outerRadius, 0.0f };
-			v[3].pos = { -std::cos(angle1) * outerRadius, std::sin(angle1) * outerRadius, 0.0f };
+			v[2].pos = { -std::cos(angle0) * kOuterRadius, std::sin(angle0) * kOuterRadius, 0.0f };
+			v[3].pos = { -std::cos(angle1) * kOuterRadius, std::sin(angle1) * kOuterRadius, 0.0f };
 
 			// 法線
 			for (int j = 0; j < 4; ++j) {
@@ -219,8 +219,8 @@ namespace KamataEngine {
 			}
 
 			// UV（U軸は一周で 0.0〜1.0）
-			float u0 = static_cast<float>(i) / segmentCount;
-			float u1 = static_cast<float>(i + 1) / segmentCount;
+			float u0 = static_cast<float>(i) / kRingDivide;
+			float u1 = static_cast<float>(i + 1) / kRingDivide;
 			v[0].uv = { u0, 0.0f };
 			v[1].uv = { u1, 0.0f };
 			v[2].uv = { u0, 1.0f };

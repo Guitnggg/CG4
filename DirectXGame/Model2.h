@@ -140,7 +140,9 @@ namespace KamataEngine {
 		/// <summary> 
 		/// 四角形モデル生成
 		/// </summary>
-		static Model2* CreateSquare(uint32_t count = 1);
+		/// <param name="count">生成数</param>
+		/// <returns>生成されたモデル</returns>
+		static Model2* CreateSquare(uint32_t count);
 
 		/// <summary>
         /// リングモデルを作成（四角形を円周上に並べる）
@@ -149,7 +151,7 @@ namespace KamataEngine {
         /// <param name="kInnerRadius">内半径</param>
         /// <param name="kOuterRadius">外半径</param>
         /// <returns>生成されたモデル</returns>
-		static Model2* CreateRing(uint32_t kRingDivide = 32, float kInnerRadius = 2.0f, float kOuterRadius = 3.0f);
+		static Model2* CreateRing(uint32_t kRingDivide, float kInnerRadius, float kOuterRadius);
 
 
 		/// <summary>

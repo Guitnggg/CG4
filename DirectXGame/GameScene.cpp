@@ -22,7 +22,7 @@ void GameScene::Initialize()
     camera_->Initialize();
 
 	Model2::StaticInitialize();
-	model_ = Model2::CreateRing(32, 2.0f, 3.0f);
+	model_ = Model2::CreateRing(8, 2.0f, 3.0f);
     textureHandle_ = TextureManager::Load("./Resources/uvChecker.png");
 }
 
