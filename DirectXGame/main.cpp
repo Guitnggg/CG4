@@ -1,10 +1,11 @@
 #include <Windows.h>
 #include <KamataEngine.h>
 
+#include "SceneManager.h"
 #include "TitleScene.h"
-#include "GameScene.h"
 
 using namespace KamataEngine;
+
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
@@ -14,14 +15,8 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
     // DirectXCommonのインスタンスの取得
     DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 
-    /// 各シーン初期化 ///
-    // TitleScene
-    TitleScene* titleScene = new TitleScene();  // インスタンス生成
-    titleScene->Initialize();                   // 初期化
-    
-    // GameScene
-    GameScene* gameScene = new GameScene();  // インスタンス生成
-    gameScene->Initialize();                 // 初期化
+    SceneManager sceneManager;
+    sceneManager.ChangeScene(new TitleScene());
 
     //===============
     // Mainループ
@@ -37,8 +32,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
         // 更新処理
         //=============
 
-        titleScene->Update();  // TitleScene
-        gameScene->Update();   // GameScene
+        sceneManager.Update();
 
         //=============
         // 描画処理 
@@ -47,22 +41,11 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
         // 描画処理開始       
         dxCommon->PreDraw();
 
-        titleScene->Draw();  // TitleScene 
-        gameScene->Draw();   // GameScene
+        sceneManager.Draw();
 
         //描画処理終了       
         dxCommon->PostDraw();
     }
-
-    /// 各シーン解放
-    // TitleScene
-    delete titleScene;
-    titleScene = nullptr;
-
-    // GameScene
-    delete gameScene;
-    gameScene = nullptr;
-
 
     // KamataEngineの終了 
     KamataEngine::Finalize();

@@ -2,8 +2,10 @@
 
 #include <KamataEngine.h>
 
-class TitleScene
-{
+#include "IScene.h"
+#include "GameScene.h"
+
+class TitleScene : public IScene{
 public:
 
     /// <summary>
@@ -19,22 +21,39 @@ public:
     /// <summary>
     /// 初期化処理
     /// </summary>
-    void Initialize();
+    void Initialize()override;
 
     /// <summary>
     /// 更新処理
     /// </summary>
-    void Update();
+    void Update()override;
 
     /// <summary>
     /// 描画処理
     /// </summary>
-    void Draw();
+    void Draw()override;
+
+public:
+
+    /// <summary>
+    /// GameSceneへのシーン変遷
+    /// </summary>
+    bool IsEnd()const override { return isEnd_; }
+    IScene* NextScene()const override { return new GameScene(); }  
+
+    SceneName GetSceneName() const override { return SceneName::Title; }  // シーン名
 
 private:
 
+    KamataEngine::DirectXCommon* dxCommon_ = nullptr;
+    KamataEngine::Input* input_ = nullptr;
     KamataEngine::WorldTransform* worldTransform_;
     KamataEngine::Camera* camera_;
+
+
     KamataEngine::Model* model_ = nullptr;
+
+    // 終了フラグ
+    bool isEnd_ = false;
 };
 

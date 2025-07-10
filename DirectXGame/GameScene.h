@@ -1,23 +1,47 @@
 #pragma once
 
 #include <KamataEngine.h>
+
+#include "IScene.h"
 #include "Model2.h"
 
-class GameScene
+
+class GameScene : public IScene
 {
 public:
 
-    //デストラクタ
+    /// <summary>
+    /// デストラクタ
+    /// </summary>
     ~GameScene();
    
-    // 初期化
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
     void Initialize();
 
-    // 更新
+    /// <summary>
+    /// 更新処理
+    /// </summary>
     void Update();
 
-    // 描画
+    /// <summary>
+    /// 描画処理
+    /// </summary>
     void Draw();
+
+    //　終了フラグ
+    bool isEnd_ = false;
+
+public:
+
+    /// <summary>
+    /// シーン変遷
+    /// </summary>    
+    bool IsEnd() const override { return isEnd_; }
+    IScene* NextScene() const override { return nullptr; }  // 一旦ゲームが終了するようになっている
+
+    SceneName GetSceneName() const override { return SceneName::InGame; }  // シーン名
 
 private:
     KamataEngine::DirectXCommon* dxCommon_ = nullptr;
