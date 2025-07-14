@@ -30,7 +30,9 @@ public:
     /// </summary>
     void Draw();
 
-    //　終了フラグ
+    /// <summary>
+    /// シーン終了フラグ
+    /// </summary>
     bool isEnd_ = false;
 
 public:
