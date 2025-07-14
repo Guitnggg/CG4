@@ -5,7 +5,7 @@
 #include "IScene.h"
 #include "GameScene.h"
 
-class TitleScene : public IScene{
+class TitleScene : public IScene {
 public:
 
     /// <summary>
@@ -39,7 +39,7 @@ public:
     /// GameSceneへのシーン変遷
     /// </summary>
     bool IsEnd()const override { return isEnd_; }
-    IScene* NextScene()const override { return new GameScene(); }  
+    IScene* NextScene()const override { return new GameScene(); }
 
     SceneName GetSceneName() const override { return SceneName::Title; }  // シーン名
 
@@ -69,8 +69,9 @@ private:
     float blinkInterval_ = 1.0f;
 
     // タイトル移動用
-    KamataEngine::Vector2 titlePosition_ = { 110.0f,-500.0f };      // 初期位置
+    KamataEngine::Vector2 titlePosition_ = { 110.0f,-500.0f };       // 初期位置
     KamataEngine::Vector2 titleTargetPosition_ = { 110.0f,150.0f };  // ゴール位置
-    float titleFallSpeed_ = 3.0f;
+    float titleFallSpeed_ = 3.0f;       // 移動速度
+    bool isTitleFallFinished_ = false;  // 移動終了判定
 };
 
