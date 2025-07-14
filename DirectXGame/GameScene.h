@@ -3,6 +3,7 @@
 #include <KamataEngine.h>
 
 #include "IScene.h"
+#include "Stage.h"
 #include "Model2.h"
 
 
@@ -46,6 +47,7 @@ public:
     SceneName GetSceneName() const override { return SceneName::InGame; }  // シーン名
 
 private:
+
     KamataEngine::DirectXCommon* dxCommon_ = nullptr;
     KamataEngine::WorldTransform* worldTransform_;
     KamataEngine::Camera* camera_;
@@ -54,5 +56,7 @@ private:
     KamataEngine::Model2* model_ = nullptr;
     uint32_t textureHandle_;
 
+    // ステージ
+    Stage* stage_ = nullptr;
 };
 

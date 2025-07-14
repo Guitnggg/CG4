@@ -9,6 +9,8 @@ GameScene::~GameScene()
 
 	Model2::StaticFinalize();
 	delete model_;	
+
+	delete stage_;
 }
 
 void GameScene::Initialize()
@@ -24,10 +26,16 @@ void GameScene::Initialize()
 	Model2::StaticInitialize();
 	model_ = Model2::CreateRing(8, 2.0f, 3.0f);
     textureHandle_ = TextureManager::Load("./Resources/uvChecker.png");
+
+	/// ステージ ///
+	stage_ = new Stage();
+	stage_->Initialize();
 }
 
 void GameScene::Update()
 {
+	/// ステージ ///
+	stage_->Update();
 }
 
 void GameScene::Draw()
@@ -43,8 +51,12 @@ void GameScene::Draw()
 	/// ここに背景スプライトの描画処理を追加できる
 	/// </summary>
 
+	/// ステージ ///
+	stage_->Draw();
+
 	// スプライト描画後処理
 	Sprite::PostDraw();
+
 	// 深度バッファクリア
 	dxCommon_->ClearDepthBuffer();
 #pragma endregion
