@@ -69,8 +69,8 @@ private:
     float blinkInterval_ = 1.0f;
 
     // タイトル移動用
-    KamataEngine::Vector2 titlePosition_ = { 110.0f,-300.0f };      // 初期位置
+    KamataEngine::Vector2 titlePosition_ = { 110.0f,-500.0f };      // 初期位置
     KamataEngine::Vector2 titleTargetPosition_ = { 110.0f,150.0f };  // ゴール位置
-    float titleFallSpeed_ = 5.0f;
+    float titleFallSpeed_ = 3.0f;
 };
 
