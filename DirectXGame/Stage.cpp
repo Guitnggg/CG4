@@ -5,32 +5,38 @@ using namespace KamataEngine;
 Stage::Stage() {}
 
 Stage::~Stage() {
-    delete bgSprite1_;
-    delete bgSprite2_;
+    for (auto sprite : sprites_) {
+        delete sprite;
+    }
 }
 
 void Stage::Initialize() {
-    textureHandle_ = TextureManager::Load();
+    textureHandle1_ = TextureManager::Load("./Resources/InGame/mori.png");
+    textureHandle2_ = TextureManager::Load("./Resources/InGame/mori2.png");
 
     // 初期位置
-    bgSprite1_ = Sprite::Create(textureHandle_, { 0.0f,0.0f, });
-    bgSprite2_ = Sprite::Create(textureHandle_, { kScrollWidth,0.0f });
+    sprites_[0] = Sprite::Create(textureHandle1_, { 0.0f, 0.0f });
+    sprites_[1] = Sprite::Create(textureHandle2_, { kScrollWidth, 0.0f });
+    sprites_[2] = Sprite::Create(textureHandle1_, { kScrollWidth * 2, 0.0f });
+    sprites_[3] = Sprite::Create(textureHandle2_, { kScrollWidth * 3, 0.0f });
 }
 
 void Stage::Update() {
     scrollx_ -= kScrollSpeed;  // 左へスクロール
 
     // 左側の画像が画面分左に移動したらループ
-    if (scrollx_ <= -kScrollWidth) {
-        scrollx_ += kScrollWidth;
+    if (scrollx_ <= -kScrollWidth*2) {
+        scrollx_ += kScrollWidth*2;
     }
 
-    // ２枚のスプライトを更新
-    bgSprite1_->SetPosition({ scrollx_,0.0f });
-    bgSprite2_->SetPosition({ scrollx_ + kScrollWidth,0.0f });
+    // 各スプライトの位置を更新（ループスクロール）
+    for (int i = 0; i < 4; ++i) {
+        sprites_[i]->SetPosition({ scrollx_ + i * kScrollWidth, 0.0f });
+    }
 }
 
 void Stage::Draw() {
-    bgSprite1_->Draw();
-    bgSprite2_->Draw();
+    for (auto sprite : sprites_) {
+        sprite->Draw();
+    }
 }

@@ -32,12 +32,13 @@ public:
 
 private:
 
-    uint32_t textureHandle_ = 0;
-    KamataEngine::Sprite* bgSprite1_ = nullptr;
-    KamataEngine::Sprite* bgSprite2_ = nullptr;
+    uint32_t textureHandle1_ = 0;
+    uint32_t textureHandle2_ = 0;
+    
+    std::array<KamataEngine::Sprite*, 4> sprites_;
 
     float scrollx_ = 0.0f;
-    const float kScrollSpeed = 2.0f;     // スクロール速度
+    const float kScrollSpeed = 4.0f;     // スクロール速度
     const float kScrollWidth = 1280.0f;  // 画面の幅
 };
 
