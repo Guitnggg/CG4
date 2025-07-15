@@ -25,8 +25,8 @@ void Stage::Update() {
     scrollx_ -= kScrollSpeed;  // 左へスクロール
 
     // 左側の画像が画面分左に移動したらループ
-    if (scrollx_ <= -kScrollWidth*2) {
-        scrollx_ += kScrollWidth*2;
+    if (scrollx_ <= -kScrollWidth * 2) {
+        scrollx_ += kScrollWidth * 2;
     }
 
     // 各スプライトの位置を更新（ループスクロール）

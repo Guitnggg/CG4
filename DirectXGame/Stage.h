@@ -2,7 +2,7 @@
 
 #include <KamataEngine.h>
 
-class Stage{
+class Stage {
 public:
 
     /// <summary>
@@ -34,7 +34,7 @@ private:
 
     uint32_t textureHandle1_ = 0;
     uint32_t textureHandle2_ = 0;
-    
+
     std::array<KamataEngine::Sprite*, 4> sprites_;
 
     float scrollx_ = 0.0f;
