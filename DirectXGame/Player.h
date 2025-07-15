@@ -15,7 +15,7 @@ public:
     Player();
 
     /// <summary>
-    /// 
+    /// デストラクタ
     /// </summary>
     ~Player();
 
