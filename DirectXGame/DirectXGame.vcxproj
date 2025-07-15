@@ -109,6 +109,7 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model2.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
@@ -191,6 +192,7 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="IScene.h" />
     <ClInclude Include="Model2.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneName.h" />
     <ClInclude Include="Stage.h" />
