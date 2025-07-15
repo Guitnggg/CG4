@@ -11,6 +11,8 @@ GameScene::~GameScene()
 	delete model_;	
 
 	delete stage_;
+
+	delete player_;
 }
 
 void GameScene::Initialize()
@@ -23,17 +25,13 @@ void GameScene::Initialize()
     camera_ = new Camera();
     camera_->Initialize();
 
-	Model2::StaticInitialize();
-	model_ = Model2::CreateRing(8, 2.0f, 3.0f);
-    textureHandle_ = TextureManager::Load("./Resources/uvChecker.png");
-
 	/// ステージ ///
 	stage_ = new Stage();
 	stage_->Initialize();
 
 	/// Player ///
 	player_ = new Player();
-	player_->Initialize(textureHandle_, camera_);
+	player_->Initialize(camera_);
 }
 
 void GameScene::Update()
@@ -58,6 +56,9 @@ void GameScene::Draw()
 	/// ステージ ///
 	stage_->Draw();
 
+	/// Player ///
+	player_->Update();
+
 	// スプライト描画後処理
 	Sprite::PostDraw();
 
@@ -67,16 +68,17 @@ void GameScene::Draw()
 
 #pragma region 3Dオブジェクト描画
 	// 3Dオブジェクト描画前処理
-	Model2::PreDraw(dxCommon_->GetCommandList());
+	Model::PreDraw(dxCommon_->GetCommandList());
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 
+	/// Player ///
 	player_->Draw();
 
 	// 3Dオブジェクト描画後処理
-	Model2::PostDraw();
+	Model::PostDraw();
 #pragma endregion
 
 #pragma region 前景スプライト描画

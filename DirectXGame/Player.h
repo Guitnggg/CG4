@@ -3,9 +3,11 @@
 #include <3d/WorldTransform.h>
 #include <3d/Model.h>
 #include <3d/Camera.h>
+#include <base/TextureManager.h>
 #include <input/Input.h>
 
 class Player{
+public:
 
     /// <summary>
     /// インストラクタ
@@ -20,7 +22,7 @@ class Player{
     /// <summary>
     /// 初期化処理
     /// </summary>
-    void Initialize(uint32_t textureHandle, KamataEngine::Camera* camera);
+    void Initialize(KamataEngine::Camera* camera);
 
     /// <summary>
     /// 更新処理
@@ -39,9 +41,8 @@ private:
     KamataEngine::Model* model_ = nullptr;
     KamataEngine::Input* input_ = nullptr;
 
-    uint32_t playerTextureHandle_ = 0u;
+    uint32_t textureHandle_ = 0u;
 
-    float moveSpeed_ = 1.0f;
-
+    float moveSpeed_ = 0.5f;
 };
 
