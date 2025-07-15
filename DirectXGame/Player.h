@@ -20,7 +20,7 @@ class Player{
     /// <summary>
     /// 初期化処理
     /// </summary>
-    void Initialize();
+    void Initialize(KamataEngine::Model* model, uint32_t textureHandle, KamataEngine::Camera* camera);
 
     /// <summary>
     /// 更新処理
@@ -34,10 +34,10 @@ class Player{
 
 private:
 
-    WorldTransform* worldTransform_;
-    Camera* camera_;
-    Model* model_ = nullptr;
-    Input* input_ = nullptr;
+    KamataEngine::WorldTransform* worldTransform_;
+    KamataEngine::Camera* camera_;
+    KamataEngine::Model* model_ = nullptr;
+    KamataEngine::Input* input_ = nullptr;
 
     uint32_t playerTextureHandle_ = 0u;
 
