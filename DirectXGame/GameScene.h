@@ -5,6 +5,7 @@
 #include "IScene.h"
 #include "Stage.h"
 #include "Model2.h"
+#include "Player.h"
 
 
 class GameScene : public IScene
@@ -58,5 +59,8 @@ private:
 
     // ステージ
     Stage* stage_ = nullptr;
+
+    // 
+    Player* player_ = nullptr;
 };
 

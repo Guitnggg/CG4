@@ -30,6 +30,10 @@ void GameScene::Initialize()
 	/// ステージ ///
 	stage_ = new Stage();
 	stage_->Initialize();
+
+	/// Player ///
+	player_ = new Player();
+	player_->Initialize(textureHandle_, camera_);
 }
 
 void GameScene::Update()
@@ -69,7 +73,7 @@ void GameScene::Draw()
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 
-	//model_->Draw(*worldTransform_, *camera_, textureHandle_);
+	player_->Draw();
 
 	// 3Dオブジェクト描画後処理
 	Model2::PostDraw();
