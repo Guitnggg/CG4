@@ -108,6 +108,7 @@
   <ItemGroup>
     <ClCompile Include="FinishScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model2.cpp" />
     <ClCompile Include="MyMath.cpp" />
@@ -194,6 +195,7 @@
   <ItemGroup>
     <ClInclude Include="FinishScene.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="IScene.h" />
     <ClInclude Include="Model2.h" />
     <ClInclude Include="MyMath.h" />
