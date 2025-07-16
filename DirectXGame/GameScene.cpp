@@ -11,8 +11,8 @@ GameScene::~GameScene()
 	delete model_;	
 
 	delete stage_;
-
 	delete player_;
+	delete graph_;
 }
 
 void GameScene::Initialize()
@@ -32,12 +32,22 @@ void GameScene::Initialize()
 	/// Player ///
 	player_ = new Player();
 	player_->Initialize(camera_);
+
+	/// 2Dグラフ ///
+	graph_ = new Graph();
+	graph_->Initialize();
 }
 
 void GameScene::Update()
 {
 	/// ステージ ///
 	stage_->Update();
+
+	/// 2Dグラフ ///
+	static float timer = 1.0f;
+	timer -= 0.001f;
+	graph_->SetValue(timer);  // 時間で減っていくように
+	graph_->Update();
 }
 
 void GameScene::Draw()
@@ -88,6 +98,9 @@ void GameScene::Draw()
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
+
+	/// 2Dグラフ ///
+	graph_->Draw();
 
 	// スプライト描画後処理
 	Sprite::PostDraw();

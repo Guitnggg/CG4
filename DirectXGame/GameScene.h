@@ -6,6 +6,7 @@
 #include "Stage.h"
 #include "Model2.h"
 #include "Player.h"
+#include "Graph.h"
 
 
 class GameScene : public IScene
@@ -62,5 +63,8 @@ private:
 
     // Player
     Player* player_ = nullptr;
+
+    // 2Dグラフ
+    Graph* graph_ = nullptr;
 };
 

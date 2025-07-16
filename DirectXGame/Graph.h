@@ -6,34 +6,40 @@ class Graph{
 public:
 
     /// <summary>
-    /// 
+    /// コンストラクタ
     /// </summary>
     Graph();
 
     /// <summary>
-    /// 
+    /// デストラクタ
     /// </summary>
     ~Graph();
 
     /// <summary>
-    /// 
+    /// 初期化処理
     /// </summary>
-    void Initialize(const KamataEngine::Vector2& positino, const KamataEngine::Vector2& size);
+    void Initialize();
 
     /// <summary>
-    /// 
+    /// 表示する割合（0.0～1.0）を設定
     /// </summary>
-    void Update(float rate);
+    /// <param name="rate">表示比率</param>
+    void SetValue(float rate);
 
     /// <summary>
-    /// 
+    /// 更新処理
+    /// </summary>
+    void Update();
+
+    /// <summary>
+    /// 描画処理
     /// </summary>
     void Draw();
 
 private:
-    KamataEngine::Sprite* flont_ = nullptr;
-    KamataEngine::Sprite* back_ = nullptr;
-    KamataEngine::Vector2  size_;
-    float rate_ = 1.0f;
+    KamataEngine::Sprite* backBar_ = nullptr;   // 裏のグラフ（赤）
+    KamataEngine::Sprite* frontBar_ = nullptr;  // 表のグラフ（緑）
+
+    float value_;  // 現在の表示比率(0.0～1.0)
 };
 
