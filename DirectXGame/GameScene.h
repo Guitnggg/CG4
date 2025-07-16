@@ -60,7 +60,7 @@ private:
     // ステージ
     Stage* stage_ = nullptr;
 
-    // 
+    // Player
     Player* player_ = nullptr;
 };
 
