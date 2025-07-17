@@ -37,6 +37,7 @@ void GameScene::Initialize(){
 	/// 2Dグラフ ///
 	graph_ = new Graph();
 	graph_->Initialize();
+	timer_ = 1.0f;
 
 	/// スコア ///
 	score_ = new Score();
@@ -48,13 +49,12 @@ void GameScene::Update(){
 	stage_->Update();
 
 	/// 2Dグラフ ///
-	static float timer = 1.0f;
-	timer -= 0.001f;
-	graph_->SetValue(timer);  // 時間で減っていくように
+	timer_ -= 0.001f;
+	graph_->SetValue(timer_);  // 時間で減っていくように
 	graph_->Update();
 
 	// シーン変遷
-	if (timer <= 0.0f) {
+	if (timer_ <= 0.0f) {
 		isEnd_ = true;
 	}
 

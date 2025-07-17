@@ -68,6 +68,7 @@ private:
 
     // 2Dグラフ
     Graph* graph_ = nullptr;
+    float timer_ = 1.0f;
 
     // スコア
     Score* score_ = nullptr;
