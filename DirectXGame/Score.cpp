@@ -16,7 +16,7 @@ void Score::Initialize() {
     // 画面右上に表示するためにx座標を計算
     float screenWidth = static_cast<float>(KamataEngine::DirectXCommon::GetInstance()->GetBackBufferWidth());
     startX = screenWidth - (size_.x * kDigitCount) - 10.0f;
-    
+
     // 各桁のスプライトを作成
     for (int i = 0; i < kDigitCount; ++i) {
         sprite_[i] = Sprite::Create(textureHandle_, { startX + size_.x * i, startY });
@@ -25,6 +25,8 @@ void Score::Initialize() {
 }
 
 void Score::Update() {
+    score_++;  // 増やしていく
+
     int32_t number = score_;  // 表示対象のスコア値
     int32_t digit = 10000;    // 一番上の桁からスタートする
 
@@ -39,8 +41,7 @@ void Score::Update() {
 }
 
 void Score::Draw() {
-     for (int i = 0; i < kDigitCount; ++i) {
+    for (int i = 0; i < kDigitCount; ++i) {
         sprite_[i]->Draw();
     }
-
 }
