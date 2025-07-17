@@ -1,9 +1,10 @@
 #include "GameScene.h"
 
+#include "FinishScene.h"
+
 using namespace KamataEngine;
 
-GameScene::~GameScene()
-{
+GameScene::~GameScene(){
 	delete worldTransform_;
 	delete camera_;
 
@@ -16,8 +17,7 @@ GameScene::~GameScene()
 	delete score_;
 }
 
-void GameScene::Initialize()
-{
+void GameScene::Initialize(){
     dxCommon_ = DirectXCommon::GetInstance();
 
     worldTransform_ = new WorldTransform();
@@ -43,8 +43,7 @@ void GameScene::Initialize()
 	score_->Initialize();
 }
 
-void GameScene::Update()
-{
+void GameScene::Update(){
 	/// ステージ ///
 	stage_->Update();
 
@@ -54,12 +53,16 @@ void GameScene::Update()
 	graph_->SetValue(timer);  // 時間で減っていくように
 	graph_->Update();
 
+	// シーン変遷
+	if (timer <= 0.0f) {
+		isEnd_ = true;
+	}
+
 	/// スコア ///
 	score_->Update();
 }
 
-void GameScene::Draw()
-{
+void GameScene::Draw(){
 	// コマンドリストの取得
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
 
@@ -117,4 +120,8 @@ void GameScene::Draw()
 	Sprite::PostDraw();
 
 #pragma endregion
+}
+
+IScene* GameScene::NextScene() const{
+	return new FinishScene();
 }

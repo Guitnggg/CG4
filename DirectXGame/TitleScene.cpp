@@ -1,5 +1,7 @@
 #include "TitleScene.h"
 
+#include "GameScene.h"
+
 using namespace KamataEngine;
 
 TitleScene::TitleScene() {}
@@ -77,4 +79,8 @@ void TitleScene::Draw() {
     // 深度バッファクリア
     dxCommon_->ClearDepthBuffer();
 #pragma endregion
+}
+
+IScene* TitleScene::NextScene() const{
+    return new GameScene();
 }
