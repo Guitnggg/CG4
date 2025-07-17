@@ -50,7 +50,6 @@ private:
     KamataEngine::WorldTransform* worldTransform_;
     KamataEngine::Camera* camera_;
 
-
     KamataEngine::Model* model_ = nullptr;
 
     // 各テクスチャ
