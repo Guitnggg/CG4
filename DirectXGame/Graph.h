@@ -27,6 +27,11 @@ public:
     void SetValue(float rate);
 
     /// <summary>
+    /// 表示割合を取得する
+    /// </summary>
+    float GetValue() const { return value_; }
+
+    /// <summary>
     /// 更新処理
     /// </summary>
     void Update();

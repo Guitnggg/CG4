@@ -43,9 +43,9 @@ void Player::Update() {
         worldTransform_->translation_.x -= moveSpeed_;
     }
 
-    // 範囲制限（例：X:-10〜10, Y:-5〜5）
-    //worldTransform_->translation_.x = std::clamp(worldTransform_->translation_.x, -10.0f, 10.0f);
-    //worldTransform_->translation_.y = std::clamp(worldTransform_->translation_.y, -5.0f, 5.0f);
+    // 範囲制限
+    worldTransform_->translation_.x = std::clamp(worldTransform_->translation_.x, -35.0f, 35.0f);
+    worldTransform_->translation_.y = std::clamp(worldTransform_->translation_.y, -19.0f, 19.0f);
 
     worldTransform_->UpdateMatrix();
 }
