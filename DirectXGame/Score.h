@@ -2,6 +2,7 @@
 
 #include <2d/Sprite.h>
 #include <base/TextureManager.h>
+#include <base/DirectXCommon.h>
 
 class Score{
 public:
@@ -32,18 +33,15 @@ public:
     void Draw();
 
 private:
-
-    uint32_t textureHandle_ = 0;
+    uint32_t textureHandle_ = 0;    
     KamataEngine::Vector2 size_ = { 32.0f, 64.0f };  // 1文字サイズ
+
+    float startX = 0.0f;
+    float startY = 10.0f;
+
     int score_ = 0;
 
     static const int kDigitCount = 5;
     KamataEngine::Sprite* sprite_[kDigitCount];
-
-
-
-
-
-
 };
 

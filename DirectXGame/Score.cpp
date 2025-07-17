@@ -12,9 +12,12 @@ Score::~Score() {
 
 void Score::Initialize() {
     textureHandle_ = TextureManager::Load("./Resources/InGame/number.png");
+
+    float screenWidth = static_cast<float>(KamataEngine::DirectXCommon::GetInstance()->GetBackBufferWidth());
+    startX = screenWidth - (size_.x * kDigitCount) - 10.0f;
     
     for (int i = 0; i < kDigitCount; ++i) {
-        sprite_[i] = Sprite::Create(textureHandle_, { 100.0f + size_.x * i, 5.0f });
+        sprite_[i] = Sprite::Create(textureHandle_, { startX + size_.x * i, startY });
         sprite_[i]->SetSize(size_);
     }
 }
