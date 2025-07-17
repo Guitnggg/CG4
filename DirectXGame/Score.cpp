@@ -13,9 +13,11 @@ Score::~Score() {
 void Score::Initialize() {
     textureHandle_ = TextureManager::Load("./Resources/InGame/number.png");
 
+    // 画面右上に表示するためにx座標を計算
     float screenWidth = static_cast<float>(KamataEngine::DirectXCommon::GetInstance()->GetBackBufferWidth());
     startX = screenWidth - (size_.x * kDigitCount) - 10.0f;
     
+    // 各桁のスプライトを作成
     for (int i = 0; i < kDigitCount; ++i) {
         sprite_[i] = Sprite::Create(textureHandle_, { startX + size_.x * i, startY });
         sprite_[i]->SetSize(size_);
@@ -23,14 +25,15 @@ void Score::Initialize() {
 }
 
 void Score::Update() {
-    int32_t number = score_;
-    int32_t digit = 10000;
+    int32_t number = score_;  // 表示対象のスコア値
+    int32_t digit = 10000;    // 一番上の桁からスタートする
 
     for (int i = 0; i < kDigitCount; ++i) {
-        int nowNumber = number / digit;
-        number = number % digit;
-        digit /= 10;
+        int nowNumber = number / digit;  // 現在の桁の数字
+        number = number % digit;         // 残りの数字に更新
+        digit /= 10;                     // 次の桁へ
 
+        // 数字の部分に対応するテクスチャ範囲を設定
         sprite_[i]->SetTextureRect({ size_.x * nowNumber, 0 }, size_);
     }
 }
