@@ -5,7 +5,9 @@ using namespace KamataEngine;
 Score::Score() {}
 
 Score::~Score() {
-
+    for (int i = 0; i < kDigitCount; i++) {
+        delete sprite_[i];
+    }
 }
 
 void Score::Initialize() {
