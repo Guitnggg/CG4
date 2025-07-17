@@ -3,10 +3,9 @@
 #include <KamataEngine.h>
 
 #include "IScene.h"
-
 class TitleScene;
 
-class FinishScene :public IScene {
+class FinishScene : public IScene {
 public:
 
     /// <summary>
@@ -49,13 +48,5 @@ private:
     KamataEngine::Input* input_ = nullptr;
 
     bool isEnd_ = false;
-
-
-
-
-
-
-
-
 };
 

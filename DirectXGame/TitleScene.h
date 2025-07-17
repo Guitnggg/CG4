@@ -3,7 +3,6 @@
 #include <KamataEngine.h>
 
 #include "IScene.h"
-
 class GameScene;
 
 class TitleScene : public IScene {
@@ -50,8 +49,6 @@ private:
     KamataEngine::Input* input_ = nullptr;
     KamataEngine::WorldTransform* worldTransform_;
     KamataEngine::Camera* camera_;
-
-    KamataEngine::Model* model_ = nullptr;
 
     // 各テクスチャ
     uint32_t BackgroundTextureHandle_ = 0;

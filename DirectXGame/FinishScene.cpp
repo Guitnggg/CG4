@@ -25,6 +25,6 @@ void FinishScene::Update() {
 void FinishScene::Draw() {
 }
 
-IScene* FinishScene::NextScene() const{
+IScene* FinishScene::NextScene() const {
     return new TitleScene();
 }

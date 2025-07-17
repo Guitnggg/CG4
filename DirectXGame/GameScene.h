@@ -9,17 +9,16 @@
 #include "Score.h"
 
 #include "IScene.h"
-
 class FinishScene;
 
-class GameScene : public IScene{
+class GameScene : public IScene {
 public:
 
     /// <summary>
     /// デストラクタ
     /// </summary>
     ~GameScene();
-   
+
     /// <summary>
     /// 初期化処理
     /// </summary>

@@ -81,6 +81,6 @@ void TitleScene::Draw() {
 #pragma endregion
 }
 
-IScene* TitleScene::NextScene() const{
+IScene* TitleScene::NextScene() const {
     return new GameScene();
 }
