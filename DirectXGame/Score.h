@@ -34,7 +34,11 @@ public:
 private:
 
     uint32_t textureHandle_ = 0;
-    KamataEngine::Sprite* scoreSprite_ = nullptr;
+    KamataEngine::Vector2 size_ = { 32.0f, 64.0f };  // 1文字サイズ
+    int score_ = 0;
+
+    static const int kDigitCount = 5;
+    KamataEngine::Sprite* sprite_[kDigitCount];
 
 
 

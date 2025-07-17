@@ -13,6 +13,7 @@ GameScene::~GameScene()
 	delete stage_;
 	delete player_;
 	delete graph_;
+	delete score_;
 }
 
 void GameScene::Initialize()
@@ -36,6 +37,10 @@ void GameScene::Initialize()
 	/// 2Dグラフ ///
 	graph_ = new Graph();
 	graph_->Initialize();
+
+	/// スコア ///
+	score_ = new Score();
+	score_->Initialize();
 }
 
 void GameScene::Update()
@@ -48,6 +53,9 @@ void GameScene::Update()
 	timer -= 0.001f;
 	graph_->SetValue(timer);  // 時間で減っていくように
 	graph_->Update();
+
+	/// スコア ///
+	score_->Update();
 }
 
 void GameScene::Draw()
@@ -101,6 +109,9 @@ void GameScene::Draw()
 
 	/// 2Dグラフ ///
 	graph_->Draw();
+
+	/// スコア ///
+	score_->Draw();
 
 	// スプライト描画後処理
 	Sprite::PostDraw();
