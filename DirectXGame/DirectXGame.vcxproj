@@ -112,6 +112,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model2.cpp" />
     <ClCompile Include="MyMath.cpp" />
+    <ClCompile Include="Particle.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="Stage.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="IScene.h" />
     <ClInclude Include="Model2.h" />
     <ClInclude Include="MyMath.h" />
+    <ClInclude Include="Particle.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneName.h" />

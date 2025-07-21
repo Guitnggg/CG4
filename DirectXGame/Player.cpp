@@ -24,6 +24,8 @@ void Player::Initialize(KamataEngine::Camera* camera){
     worldTransform_->Initialize();
     worldTransform_->rotation_ = { 0,90.0f,0 };
     worldTransform_->scale_ = { 2,2,2 };
+
+    currentHP_ = maxHP_;
 }
 
 void Player::Update() {
@@ -52,4 +54,11 @@ void Player::Update() {
 
 void Player::Draw() {
     model_->Draw(*worldTransform_, *camera_, textureHandle_);
+}
+
+void Player::TakeDamage(int amount){
+    currentHP_ -= amount;
+    if (currentHP_ < 0) {
+        currentHP_ = 0;
+    }
 }

@@ -60,6 +60,19 @@ void GameScene::Update() {
     if (graph_->GetValue() <= 0.0f) {  // 緑のゲージが0になったら
         isEnd_ = true;
     }
+
+    /* 　　敵との当たり判定を追加したら変遷用のフラグをこっちに変更
+    
+    /// 2Dグラフ ///
+    float hpRate = static_cast<float>(player_->GetHP())/100.0f;
+    graph_->SetValue(hpRate);
+    graph_->Update();
+
+    /// シーン変遷 ///
+    if(player_->IsDead()){
+        isEnd=true;
+    }
+    */
 }
 
 void GameScene::Draw() {

@@ -34,6 +34,21 @@ public:
     /// </summary>
     void Draw();
 
+    /// <summary>
+    /// HPを減らす
+    /// </summary>
+    void TakeDamage(int amount);
+
+    /// <summary>
+    /// 現在のHPを取得
+    /// </summary>
+    int GetHP() const { return currentHP_; }
+
+    /// <summary>
+    /// 死亡しているかどうか
+    /// </summary>
+    bool IsDead() const { return currentHP_ <= 0; }
+
 private:
 
     KamataEngine::WorldTransform* worldTransform_;
@@ -44,5 +59,8 @@ private:
     uint32_t textureHandle_ = 0u;
 
     float moveSpeed_ = 0.5f;
+
+    int maxHP_ = 100;
+    int currentHP_ = 100;
 };
 
