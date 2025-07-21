@@ -13,6 +13,12 @@ GameScene::~GameScene() {
 
     delete stage_;
     delete player_;
+
+    for (auto enemy : enemies_) {
+        delete enemy;
+    }
+    enemies_.clear();
+
     delete graph_;
     delete score_;
 }
@@ -34,6 +40,10 @@ void GameScene::Initialize() {
     player_ = new Player();
     player_->Initialize(camera_);
 
+    /// Enemy ///
+    enemies_.clear();
+    enemySpawnTimer_ = 0.0f;
+
     /// 2Dグラフ ///
     graph_ = new Graph();
     graph_->Initialize();
@@ -47,6 +57,31 @@ void GameScene::Initialize() {
 void GameScene::Update() {
     /// ステージ ///
     stage_->Update();
+
+    /// Player ///
+    player_->Update();
+
+    /// Enemy ///
+    // 敵の生成タイマー更新
+    enemySpawnTimer_ += 1.0f / 60.0f;
+    if (enemySpawnTimer_ > 2.0f) {
+        Enemy* newEnemy = new Enemy();
+        newEnemy->Initialize(camera_);
+        enemies_.push_back(newEnemy);
+        enemySpawnTimer_ = 0.0f;
+    }
+
+    // 敵の更新
+    for (auto it = enemies_.begin(); it != enemies_.end();) {
+        (*it)->Update();
+        if ((*it)->IsOutOfScreen()) {
+            delete* it;
+            it = enemies_.erase(it);
+        }
+        else {
+            ++it;
+        }
+    }
 
     /// スコア ///
     score_->Update();
@@ -90,9 +125,6 @@ void GameScene::Draw() {
     /// ステージ ///
     stage_->Draw();
 
-    /// Player ///
-    player_->Update();
-
     // スプライト描画後処理
     Sprite::PostDraw();
 
@@ -110,6 +142,11 @@ void GameScene::Draw() {
 
     /// Player ///
     player_->Draw();
+
+    /// Enemy ///
+    for (auto enemy : enemies_) {
+        enemy->Draw();
+    }
 
     // 3Dオブジェクト描画後処理
     Model::PostDraw();

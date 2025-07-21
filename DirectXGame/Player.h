@@ -3,7 +3,6 @@
 #include <3d/WorldTransform.h>
 #include <3d/Model.h>
 #include <3d/Camera.h>
-#include <base/TextureManager.h>
 #include <input/Input.h>
 
 class Player{

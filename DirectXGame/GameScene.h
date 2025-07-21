@@ -1,12 +1,14 @@
 #pragma once
 
 #include <KamataEngine.h>
+#include <vector>
 
 #include "Stage.h"
 #include "Model2.h"
 #include "Player.h"
 #include "Graph.h"
 #include "Score.h"
+#include "Enemy.h"
 
 #include "IScene.h"
 class FinishScene;
@@ -64,6 +66,10 @@ private:
 
     // Player
     Player* player_ = nullptr;
+
+    // Enemy
+    std::vector<Enemy*>enemies_;
+    float enemySpawnTimer_ = 0.0f;
 
     // 2Dグラフ
     Graph* graph_ = nullptr;

@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <algorithm>
+#include <base/TextureManager.h>
 
 using namespace KamataEngine;
 
