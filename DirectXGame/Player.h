@@ -5,7 +5,7 @@
 #include <3d/Camera.h>
 #include <input/Input.h>
 
-class Player{
+class Player {
 public:
 
     /// <summary>
@@ -48,9 +48,14 @@ public:
     /// </summary>
     bool IsDead() const { return currentHP_ <= 0; }
 
+    /// <summary>
+    /// Getter
+    /// </summary>
+    const KamataEngine::Vector3& GetPosition() const { return worldTransform_.translation_; }
+
 private:
 
-    KamataEngine::WorldTransform* worldTransform_;
+    KamataEngine::WorldTransform worldTransform_;
     KamataEngine::Camera* camera_;
     KamataEngine::Model* model_ = nullptr;
     KamataEngine::Input* input_ = nullptr;

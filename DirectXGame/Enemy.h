@@ -4,7 +4,7 @@
 #include <3d/Model.h>
 #include <3d/Camera.h>
 
-class Enemy{
+class Enemy {
 public:
 
     /// <summary>
@@ -37,6 +37,13 @@ public:
     /// </summary>
     bool IsOutOfScreen() const;
 
+public:
+
+    /// <summary>
+    /// Getter
+    /// </summary>
+    const KamataEngine::Vector3& GetPosition() const { return worldTransform_.translation_; }
+
 private:
 
     KamataEngine::WorldTransform worldTransform_;
@@ -44,8 +51,5 @@ private:
     KamataEngine::Camera* camera_ = nullptr;
 
     float speed_ = 0.3f;
-
-
-
 };
 

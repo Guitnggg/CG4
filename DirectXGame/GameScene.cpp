@@ -1,5 +1,6 @@
 #include "GameScene.h"
 
+#include "Collision.h"
 #include "FinishScene.h"
 
 using namespace KamataEngine;
@@ -60,6 +61,8 @@ void GameScene::Update() {
 
     /// Player ///
     player_->Update();
+    KamataEngine::Vector3 playerPos = player_->GetPosition();
+    float playerRadius = 1.0f;  // プレイヤーの当たり判定半径
 
     /// Enemy ///
     // 敵の生成タイマー更新
@@ -83,31 +86,35 @@ void GameScene::Update() {
         }
     }
 
+    // 敵ごとの当たり判定チェック
+    for (auto it = enemies_.begin(); it != enemies_.end();) {
+        Enemy* enemy = *it;
+
+        if (Collision::CheckSphereCollision(playerPos, playerRadius, enemy->GetPosition(), 1.5f)) {
+            // 当たった場合、プレイヤーのHPを減らす
+            player_->TakeDamage(10);
+
+            // 敵は削除（1回当たったら消えると仮定）
+            delete enemy;
+            it = enemies_.erase(it);
+        }
+        else {
+            ++it;
+        }
+    }
+
     /// スコア ///
     score_->Update();
 
     /// 2Dグラフ ///
-    timer_ -= 0.001f;
-    graph_->SetValue(timer_);  // 時間で減っていくように
-    graph_->Update();
-
-    /// シーン変遷 ///
-    if (graph_->GetValue() <= 0.0f) {  // 緑のゲージが0になったら
-        isEnd_ = true;
-    }
-
-    /* 　　敵との当たり判定を追加したら変遷用のフラグをこっちに変更
-    
-    /// 2Dグラフ ///
-    float hpRate = static_cast<float>(player_->GetHP())/100.0f;
+    float hpRate = static_cast<float>(player_->GetHP()) / 100.0f;
     graph_->SetValue(hpRate);
     graph_->Update();
 
     /// シーン変遷 ///
-    if(player_->IsDead()){
-        isEnd=true;
+    if (player_->IsDead()) {
+        isEnd_ = true;
     }
-    */
 }
 
 void GameScene::Draw() {
