@@ -1,6 +1,7 @@
 #include "Particle.h"
 
 #include <algorithm>
+#include <cassert>
 
 using namespace KamataEngine;
 using namespace MathUtility;

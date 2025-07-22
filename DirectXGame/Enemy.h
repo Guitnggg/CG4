@@ -50,6 +50,6 @@ private:
     KamataEngine::Model* model_ = nullptr;
     KamataEngine::Camera* camera_ = nullptr;
 
-    float speed_ = 0.3f;
+    float speed_ = 0.5f;
 };
 

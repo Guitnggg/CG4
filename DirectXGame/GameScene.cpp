@@ -13,12 +13,7 @@ GameScene::~GameScene() {
     delete model_;
 
     delete stage_;
-    delete player_;
-
-    for (auto enemy : enemies_) {
-        delete enemy;
-    }
-    enemies_.clear();
+    delete player_;   
 
     delete graph_;
     delete score_;
@@ -92,9 +87,9 @@ void GameScene::Update() {
 
         if (Collision::CheckSphereCollision(playerPos, playerRadius, enemy->GetPosition(), 1.5f)) {
             // 当たった場合、プレイヤーのHPを減らす
-            player_->TakeDamage(10);
+            player_->TakeDamage(25);
 
-            // 敵は削除（1回当たったら消えると仮定）
+            // 敵は削除
             delete enemy;
             it = enemies_.erase(it);
         }
