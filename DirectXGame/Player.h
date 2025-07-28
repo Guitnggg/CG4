@@ -33,6 +33,8 @@ public:
     /// </summary>
     void Draw();
 
+public:
+
     /// <summary>
     /// HPを減らす
     /// </summary>
@@ -55,16 +57,16 @@ public:
 
 private:
 
-    KamataEngine::WorldTransform worldTransform_;
-    KamataEngine::Camera* camera_;
-    KamataEngine::Model* model_ = nullptr;
-    KamataEngine::Input* input_ = nullptr;
+    KamataEngine::WorldTransform worldTransform_;  // ワールド変換
+    KamataEngine::Camera* camera_;                 // カメラ
+    KamataEngine::Model* model_ = nullptr;         // モデル
+    KamataEngine::Input* input_ = nullptr;         // 入力
 
-    uint32_t textureHandle_ = 0u;
+    uint32_t textureHandle_ = 0u;  // テクスチャハンドル
 
-    float moveSpeed_ = 0.5f;
+    float moveSpeed_ = 0.5f;  // 移動速度
 
-    int maxHP_ = 100;
-    int currentHP_ = 100;
+    int maxHP_ = 100;      // 最大HP
+    int currentHP_ = 100;  // 現在のHP
 };
 

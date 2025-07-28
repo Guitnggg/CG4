@@ -36,26 +36,21 @@ public:
     /// </summary>
     void Draw()override;
 
-    /// <summary>
-    /// シーン終了フラグ
-    /// </summary>
-    bool isEnd_ = false;
-
 public:
 
     /// <summary>
     /// シーン変遷
     /// </summary>    
-    bool IsEnd() const override { return isEnd_; }
-    IScene* NextScene() const override;
+    bool IsEnd() const override { return isEnd_; }  // シーン終了フラグ
+    IScene* NextScene() const override;             // 次のシーンを返す
 
     SceneName GetSceneName() const override { return SceneName::InGame; }  // シーン名
 
 private:
 
-    KamataEngine::DirectXCommon* dxCommon_ = nullptr;
-    KamataEngine::WorldTransform* worldTransform_;
-    KamataEngine::Camera* camera_;
+    KamataEngine::DirectXCommon* dxCommon_ = nullptr;  // DirectX関連
+    KamataEngine::WorldTransform* worldTransform_;     // ワールド変換
+    KamataEngine::Camera* camera_;                     // カメラ
 
     // モデル
     KamataEngine::Model2* model_ = nullptr;
@@ -77,5 +72,9 @@ private:
 
     // スコア
     Score* score_ = nullptr;
+
+    // シーン終了フラグ
+    bool isEnd_ = false;
+
 };
 

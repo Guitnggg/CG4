@@ -38,17 +38,17 @@ public:
     /// <summary>
     /// GameSceneへのシーン変遷
     /// </summary>
-    bool IsEnd()const override { return isEnd_; }
-    IScene* NextScene()const override;
+    bool IsEnd()const override { return isEnd_; }  // シーン終了フラグ
+    IScene* NextScene()const override;             // 次のシーンを返す（nullptr を返すとゲーム終了）
 
     SceneName GetSceneName() const override { return SceneName::Title; }  // シーン名
 
 private:
 
-    KamataEngine::DirectXCommon* dxCommon_ = nullptr;
-    KamataEngine::Input* input_ = nullptr;
-    KamataEngine::WorldTransform* worldTransform_;
-    KamataEngine::Camera* camera_;
+    KamataEngine::DirectXCommon* dxCommon_ = nullptr;  // DirectX関連の管理クラス
+    KamataEngine::Input* input_ = nullptr;             // 入力管理クラス
+    KamataEngine::WorldTransform* worldTransform_;     // ワールド変換管理クラス
+    KamataEngine::Camera* camera_;                     // カメラ管理クラス
 
     // 各テクスチャ
     uint32_t BackgroundTextureHandle_ = 0;
@@ -62,8 +62,8 @@ private:
     bool isEnd_ = false;
 
     // スタート点滅用
-    float blinkTimer_ = 0.0f;
-    float blinkInterval_ = 1.0f;
+    float blinkTimer_ = 0.0f;     // 点滅タイマー
+    float blinkInterval_ = 1.0f;  // 点滅間隔
 
     // タイトル移動用
     KamataEngine::Vector2 titlePosition_ = { 110.0f,-500.0f };       // 初期位置

@@ -9,12 +9,12 @@ class FinishScene : public IScene {
 public:
 
     /// <summary>
-    /// 
+    /// インストラクタ
     /// </summary>
     FinishScene();
 
     /// <summary>
-    /// 
+    /// デストラクタ
     /// </summary>
     ~FinishScene();
 
@@ -38,15 +38,15 @@ public:
     /// <summary>
     /// シーン変遷
     /// </summary>
-    bool IsEnd() const override { return isEnd_; }
-    IScene* NextScene() const override;
+    bool IsEnd() const override { return isEnd_; }  // シーン終了フラグ
+    IScene* NextScene() const override;             // 次のシーンを返す
 
-    SceneName GetSceneName() const override { return SceneName::Finish; }
+    SceneName GetSceneName() const override { return SceneName::Finish; }  // シーン名
 
 private:
 
-    KamataEngine::Input* input_ = nullptr;
+    KamataEngine::Input* input_ = nullptr;  // 入力関連
 
-    bool isEnd_ = false;
+    bool isEnd_ = false;  // シーン終了フラグ
 };
 
