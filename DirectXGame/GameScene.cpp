@@ -40,6 +40,9 @@ void GameScene::Initialize() {
     enemies_.clear();
     enemySpawnTimer_ = 0.0f;
 
+    /// particle ///
+    particleModel_ = Model::CreateSphere(10, 10);
+
     /// 2Dグラフ ///
     graph_ = new Graph();
     graph_->Initialize();
@@ -89,9 +92,34 @@ void GameScene::Update() {
             // 当たった場合、プレイヤーのHPを減らす
             player_->TakeDamage(25);
 
+            // パーティクルを好きな数生成
+            for (int i = 0; i < 30; ++i) {
+                KamataEngine::Vector3 velocity = {
+                    (float(rand()) / RAND_MAX - 0.5f) * 0.5f,
+                    (float(rand()) / RAND_MAX - 0.5f) * 0.5f,
+                    (float(rand()) / RAND_MAX - 0.5f) * 0.5f
+                };
+
+                Particle* p = new Particle();
+                p->Initialize(particleModel_, playerPos, velocity);
+                particles_.push_back(p);
+            }
+
             // 敵は削除
             delete enemy;
             it = enemies_.erase(it);
+        }
+        else {
+            ++it;
+        }
+    }
+
+    /// particle ///
+    for(auto it = particles_.begin(); it != particles_.end();) {
+        (*it)->Update();
+        if ((*it)->IsFinished()) {
+            delete* it;
+            it = particles_.erase(it);
         }
         else {
             ++it;
@@ -148,6 +176,11 @@ void GameScene::Draw() {
     /// Enemy ///
     for (auto enemy : enemies_) {
         enemy->Draw();
+    }
+
+    /// particle ///
+    for (auto& p : particles_) {
+        p->Draw(*camera_);
     }
 
     // 3Dオブジェクト描画後処理

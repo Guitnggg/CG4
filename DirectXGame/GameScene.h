@@ -2,6 +2,7 @@
 
 #include <KamataEngine.h>
 #include <vector>
+#include <list>
 
 #include "Stage.h"
 #include "Model2.h"
@@ -9,6 +10,7 @@
 #include "Graph.h"
 #include "Score.h"
 #include "Enemy.h"
+#include "Particle.h"
 
 #include "IScene.h"
 class FinishScene;
@@ -65,6 +67,10 @@ private:
     // Enemy
     std::vector<Enemy*>enemies_;
     float enemySpawnTimer_ = 0.0f;
+
+    // particle
+    KamataEngine::Model* particleModel_ = nullptr;
+    std::list<Particle*> particles_;
 
     // 2Dグラフ
     Graph* graph_ = nullptr;
