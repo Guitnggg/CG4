@@ -53,8 +53,16 @@ private:
     // 各テクスチャ
     uint32_t BackgroundTextureHandle_ = 0;
     KamataEngine::Sprite* BackgroundSprite_ = nullptr;
+    uint32_t FinishTextureHandle_ = 0;
+    KamataEngine::Sprite* FinishSprite_ = nullptr;
+    uint32_t ReturnTextureHandle_ = 0;
+    KamataEngine::Sprite* ReturnSprite_ = nullptr;
 
+    // 終了フラグ
+    bool isEnd_ = false;
 
-    bool isEnd_ = false;  // シーン終了フラグ
+    // 点滅用
+    float blinkTimer_ = 0.0f;     // 点滅タイマー
+    float blinkInterval_ = 1.0f;  // 点滅間隔
 };
 

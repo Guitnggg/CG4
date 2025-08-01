@@ -7,18 +7,38 @@ using namespace KamataEngine;
 FinishScene::FinishScene() {}
 
 FinishScene::~FinishScene() {
+    delete BackgroundSprite_;
+    delete FinishSprite_;
+    delete ReturnSprite_;
 }
 
 void FinishScene::Initialize() {
     dxCommon_ = DirectXCommon::GetInstance();
 
-    BackgroundTextureHandle_ = TextureManager::Load("./Resources/title/Wood.png");
+    BackgroundTextureHandle_ = TextureManager::Load("./Resources/finish/Wood.png");
     BackgroundSprite_ = Sprite::Create(BackgroundTextureHandle_, { 0.0f,0.0f });
+
+    FinishTextureHandle_ = TextureManager::Load("./Resources/finish/End.png");
+    FinishSprite_ = Sprite::Create(FinishTextureHandle_, { 0.0f, 0.0f });
+
+    ReturnTextureHandle_ = TextureManager::Load("./Resources/finish/Return.png");
+    ReturnSprite_ = Sprite::Create(ReturnTextureHandle_, { 150.0f, 550.0f });
 }
 
 void FinishScene::Update() {
     // 入力を受け付けるようにする
     input_ = Input::GetInstance();
+
+    /// Start点滅 ///
+    blinkTimer_ += 1.0f / 60.0f;  // 点滅タイマー更新
+
+    if (blinkTimer_ >= blinkInterval_) {
+        blinkTimer_ -= blinkInterval_;
+    }
+
+    // アルファをサイン波で変化させる
+    float alpha = 0.5f + 0.5f * sinf(blinkTimer_ / blinkInterval_ * 2.0f * 3.14159265f);
+    ReturnSprite_->SetColor({ 1.0f, 1.0f, 1.0f, alpha });
 
     /// シーン変遷 ///
     if (input_->PushKey(DIK_SPACE)) {  // シーン変遷の条件を書く
@@ -39,6 +59,8 @@ void FinishScene::Draw() {
     /// </summary>
 
     BackgroundSprite_->Draw();
+    FinishSprite_->Draw();
+    ReturnSprite_->Draw();
   
     // スプライト描画後処理
     Sprite::PostDraw();
