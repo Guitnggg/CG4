@@ -15,7 +15,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
     DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 
     SceneManager sceneManager;
-    sceneManager.ChangeScene(new TitleScene());
+    sceneManager.SetInitialScene(new TitleScene());
 
     //===============
     // Mainループ
