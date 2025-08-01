@@ -19,7 +19,7 @@ void FinishScene::Initialize() {
     BackgroundSprite_ = Sprite::Create(BackgroundTextureHandle_, { 0.0f,0.0f });
 
     FinishTextureHandle_ = TextureManager::Load("./Resources/finish/End.png");
-    FinishSprite_ = Sprite::Create(FinishTextureHandle_, { 0.0f, 0.0f });
+    FinishSprite_ = Sprite::Create(FinishTextureHandle_, { 150.0f, 200.0f });
 
     ReturnTextureHandle_ = TextureManager::Load("./Resources/finish/Return.png");
     ReturnSprite_ = Sprite::Create(ReturnTextureHandle_, { 150.0f, 550.0f });
