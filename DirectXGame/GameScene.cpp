@@ -41,7 +41,7 @@ void GameScene::Initialize() {
     enemySpawnTimer_ = 0.0f;
 
     /// particle ///
-    particleModel_ = Model::CreateSphere(10, 10);
+    particleModel_ = Model::CreateSphere(20, 20);
 
     /// 2Dグラフ ///
     graph_ = new Graph();
