@@ -16,8 +16,10 @@ public:
             posA.y - posB.y,
             posA.z - posB.z
         };
+
         float distSq = d.x * d.x + d.y * d.y + d.z * d.z;
         float r = radiusA + radiusB;
+
         return distSq <= r * r;
     }
 

@@ -45,7 +45,15 @@ public:
 
 private:
 
-    KamataEngine::Input* input_ = nullptr;  // 入力関連
+    KamataEngine::DirectXCommon* dxCommon_ = nullptr;  // DirectX関連
+    KamataEngine::Input* input_ = nullptr;             // 入力関連
+    KamataEngine::WorldTransform* worldTransform_;     // ワールド変換管理クラス
+    KamataEngine::Camera* camera_;                     // カメラ管理クラス
+
+    // 各テクスチャ
+    uint32_t BackgroundTextureHandle_ = 0;
+    KamataEngine::Sprite* BackgroundSprite_ = nullptr;
+
 
     bool isEnd_ = false;  // シーン終了フラグ
 };
